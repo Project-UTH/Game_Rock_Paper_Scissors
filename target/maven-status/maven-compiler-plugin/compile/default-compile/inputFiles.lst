@@ -1,4 +1,10 @@
-E:\kiemtragiuaki\Game_Rock_Paper_Scissors\src\main\java\com\rpsgame\RpsClientController.java
-E:\kiemtragiuaki\Game_Rock_Paper_Scissors\src\main\java\com\rpsgame\RpsClientModel.java
-E:\kiemtragiuaki\Game_Rock_Paper_Scissors\src\main\java\com\rpsgame\RpsClientView.java
-E:\kiemtragiuaki\Game_Rock_Paper_Scissors\src\main\java\com\rpsgame\RpsServer.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\ClientHandler.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\controller\RpsClientController.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\Game.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\model\RpsClientModel.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\RpsServer.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\view\GamePanel.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\view\ReadyPanel.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\view\ResultPanel.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\view\RpsClientView.java
+A:\LapTrinhMang\RpsGame\RpsGame\src\main\java\com\rpsgame\view\WaitingPanel.java

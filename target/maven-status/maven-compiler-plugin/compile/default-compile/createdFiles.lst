@@ -1,10 +1,1 @@
-com\rpsgame\RpsClientController$1.class
-com\rpsgame\RpsClientController$2.class
-com\rpsgame\RpsServer$ClientHandler.class
-com\rpsgame\RpsClientModel$MessageListener.class
-com\rpsgame\RpsClientController$3.class
-com\rpsgame\RpsClientModel.class
-com\rpsgame\RpsClientView.class
-com\rpsgame\RpsClientController.class
-com\rpsgame\RpsServer$Game.class
 com\rpsgame\RpsServer.class

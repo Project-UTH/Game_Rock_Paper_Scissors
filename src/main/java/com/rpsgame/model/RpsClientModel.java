@@ -1,4 +1,4 @@
-package com.rpsgame;
+package com.rpsgame.model;
 
 import java.io.*;
 import java.net.*;
@@ -26,8 +26,8 @@ public class RpsClientModel {
             socket = new Socket(HOST, PORT);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println("Client connected to " + HOST + ":" + PORT);
 
-            // Thread lắng nghe message từ server
             new Thread(() -> {
                 try {
                     String message;
@@ -37,9 +37,12 @@ public class RpsClientModel {
                         }
                     }
                 } catch (IOException e) {
+                    System.out.println("Client error: " + e.getMessage());
                     if (listener != null) {
                         listener.onError("Connection lost: " + e.getMessage());
                     }
+                } finally {
+                    cleanup(); // Đóng kết nối khi thread kết thúc
                 }
             }).start();
         } catch (IOException e) {
@@ -51,14 +54,32 @@ public class RpsClientModel {
 
     public void sendChoice(String choice) {
         if (out != null) {
+            System.out.println("Client sending: " + choice);
             out.println(choice);
         }
     }
 
+    public void sendReadySignal() {
+        if (out != null) {
+            System.out.println("Client sending: READY");
+            out.println("READY");
+        }
+    }
+
     public void disconnect() {
+        System.out.println("Client initiating disconnect...");
+        cleanup();
+        System.out.println("Client disconnected.");
+    }
+
+    private void cleanup() {
         try {
-            if (socket != null) socket.close();
+            if (in != null) in.close();
+            if (out != null) out.close();
+            if (socket != null && !socket.isClosed()) socket.close();
+            System.out.println("Socket and streams closed.");
         } catch (IOException e) {
+            System.out.println("Error during cleanup: " + e.getMessage());
             e.printStackTrace();
         }
     }
