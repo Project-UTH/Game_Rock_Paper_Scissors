@@ -66,12 +66,12 @@ public class RpsClientController implements RpsClientModel.MessageListener {
             int confirm = JOptionPane.showConfirmDialog(view, "Bạn có chắc muốn thoát?", "Xác nhận thoát", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 System.out.println("Exit button pressed, initiating disconnect...");
-                model.disconnect();
-                view.dispose(); // Đóng cửa sổ trước khi thoát
-                SwingUtilities.invokeLater(() -> {
+                view.dispose(); // Đóng cửa sổ trước khi ngắt kết nối
+                new Thread(() -> {
+                    model.disconnect();
                     System.out.println("Exiting application...");
                     System.exit(0); // Đảm bảo thoát ứng dụng
-                });
+                }).start();
             }
         });
     }

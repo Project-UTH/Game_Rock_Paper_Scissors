@@ -12,7 +12,7 @@ public class GamePanel extends JPanel {
     private JButton rockButton;
     private JButton paperButton;
     private JButton scissorsButton;
-    private JButton exitButton; // Nút thoát mới
+    private JButton exitButton;
     private JLabel titleLabel;
     private JLabel statusLabel;
     
@@ -48,7 +48,7 @@ public class GamePanel extends JPanel {
         exitButton.setFont(new Font("Arial", Font.BOLD, 14));
         exitButton.setBackground(new Color(200, 50, 50)); // Màu đỏ để nổi bật
         exitButton.setForeground(RpsClientView.TEXT_COLOR);
-        exitButton.setPreferredSize(new Dimension(120, 50));
+        exitButton.setPreferredSize(new Dimension(100, 40));
         exitButton.setBorder(BorderFactory.createRaisedBevelBorder());
         exitButton.setFocusPainted(false);
         
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel {
         button.add(textLabel, BorderLayout.SOUTH);
         
         button.setToolTipText(tooltip);
-        button.setPreferredSize(new Dimension(120, 100));
+        button.setPreferredSize(new Dimension(120, 100)); // Giữ kích thước cố định
         button.setBackground(RpsClientView.BUTTON_COLOR);
         button.setForeground(RpsClientView.TEXT_COLOR);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -108,16 +108,26 @@ public class GamePanel extends JPanel {
     }
 
     private void layoutComponents() {
+        // Panel trên cùng (tiêu đề và nút thoát)
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
         topPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
         
-        topPanel.add(titleLabel, BorderLayout.NORTH);
-        topPanel.add(statusLabel, BorderLayout.SOUTH);
+        titleLabel.setBorder(new EmptyBorder(0, 0, 10, 0));
+        topPanel.add(titleLabel, BorderLayout.CENTER);
         
+        JPanel exitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        exitPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
+        exitPanel.add(exitButton);
+        topPanel.add(exitPanel, BorderLayout.EAST);
+        
+        // Panel giữa (trạng thái và nhật ký)
         JPanel centerPanel = new JPanel(new BorderLayout());
         centerPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
         centerPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
+        
+        statusLabel.setBorder(new EmptyBorder(0, 0, 10, 0));
+        centerPanel.add(statusLabel, BorderLayout.NORTH);
         
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setBorder(BorderFactory.createTitledBorder(
@@ -129,15 +139,12 @@ public class GamePanel extends JPanel {
         ));
         scrollPane.setBackground(RpsClientView.PANEL_COLOR);
         scrollPane.getViewport().setBackground(RpsClientView.PANEL_COLOR);
-        
         centerPanel.add(scrollPane, BorderLayout.CENTER);
         
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        // Panel dưới (các nút lựa chọn)
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 20, 20)); // 1 hàng, 3 cột, khoảng cách 20px
         buttonPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
         buttonPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
-        
-        JPanel buttonContainer = new JPanel(new BorderLayout());
-        buttonContainer.setBackground(RpsClientView.BACKGROUND_COLOR);
         
         JLabel choiceLabel = new JLabel("🎲 Chọn nước đi của bạn:", JLabel.CENTER);
         choiceLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -147,8 +154,9 @@ public class GamePanel extends JPanel {
         buttonPanel.add(rockButton);
         buttonPanel.add(paperButton);
         buttonPanel.add(scissorsButton);
-        buttonPanel.add(exitButton); // Thêm nút thoát
         
+        JPanel buttonContainer = new JPanel(new BorderLayout());
+        buttonContainer.setBackground(RpsClientView.BACKGROUND_COLOR);
         buttonContainer.add(choiceLabel, BorderLayout.NORTH);
         buttonContainer.add(buttonPanel, BorderLayout.CENTER);
         
@@ -160,7 +168,6 @@ public class GamePanel extends JPanel {
     private void styleComponents() {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         titleLabel.setForeground(RpsClientView.ACCENT_COLOR);
-        titleLabel.setBorder(new EmptyBorder(0, 0, 10, 0));
         
         statusLabel.setFont(new Font("Arial", Font.ITALIC, 14));
         statusLabel.setForeground(RpsClientView.TEXT_COLOR);

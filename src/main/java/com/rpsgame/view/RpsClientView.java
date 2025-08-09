@@ -34,7 +34,7 @@ public class RpsClientView extends JFrame {
     private void setupMainWindow() {
         setTitle("🎮 Kéo Búa Giấy - Trò chơi trực tuyến");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 500);
+        setSize(700, 550); // Tăng kích thước khung lên 700x550
         setLocationRelativeTo(null);
         setResizable(false);
         getContentPane().setBackground(BACKGROUND_COLOR);
