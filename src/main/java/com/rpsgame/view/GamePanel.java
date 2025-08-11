@@ -71,17 +71,17 @@ public class GamePanel extends JPanel {
         button.setLayout(new BorderLayout());
         
         JLabel emojiLabel = new JLabel(emoji, JLabel.CENTER);
-        emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 40));
+        emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30)); // Kích thước emoji
         
         JLabel textLabel = new JLabel(text, JLabel.CENTER);
-        textLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        textLabel.setFont(new Font("Arial", Font.BOLD, 12)); // Kích thước chữ
         textLabel.setForeground(RpsClientView.TEXT_COLOR);
         
         button.add(emojiLabel, BorderLayout.CENTER);
         button.add(textLabel, BorderLayout.SOUTH);
         
         button.setToolTipText(tooltip);
-        button.setPreferredSize(new Dimension(120, 100)); // Giữ kích thước cố định
+        button.setPreferredSize(new Dimension(100, 100)); // Chuyển thành hình vuông 100x100
         button.setBackground(RpsClientView.BUTTON_COLOR);
         button.setForeground(RpsClientView.TEXT_COLOR);
         button.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -93,14 +93,14 @@ public class GamePanel extends JPanel {
             public void mouseEntered(MouseEvent e) {
                 button.setBackground(RpsClientView.BUTTON_HOVER_COLOR);
                 button.setBorder(BorderFactory.createLineBorder(RpsClientView.ACCENT_COLOR, 2));
-                emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 45));
+                emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 35));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 button.setBackground(RpsClientView.BUTTON_COLOR);
                 button.setBorder(BorderFactory.createRaisedBevelBorder());
-                emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 40));
+                emojiLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
             }
         });
         
@@ -114,7 +114,7 @@ public class GamePanel extends JPanel {
         topPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
         
         titleLabel.setBorder(new EmptyBorder(0, 0, 10, 0));
-        topPanel.add(titleLabel, BorderLayout.CENTER);
+        topPanel.add(titleLabel, BorderLayout.CENTER); // Căn giữa tiêu đề
         
         JPanel exitPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         exitPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
@@ -142,9 +142,9 @@ public class GamePanel extends JPanel {
         centerPanel.add(scrollPane, BorderLayout.CENTER);
         
         // Panel dưới (các nút lựa chọn)
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 20, 20)); // 1 hàng, 3 cột, khoảng cách 20px
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 15, 15)); // 1 hàng, 3 cột, khoảng cách 15px
         buttonPanel.setBackground(RpsClientView.BACKGROUND_COLOR);
-        buttonPanel.setBorder(new EmptyBorder(10, 20, 20, 20));
+        buttonPanel.setBorder(new EmptyBorder(10, 0, 20, 0)); // Loại bỏ padding ngang để căn giữa
         
         JLabel choiceLabel = new JLabel("🎲 Chọn nước đi của bạn:", JLabel.CENTER);
         choiceLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -155,10 +155,17 @@ public class GamePanel extends JPanel {
         buttonPanel.add(paperButton);
         buttonPanel.add(scissorsButton);
         
-        JPanel buttonContainer = new JPanel(new BorderLayout());
+        // Sử dụng GridBagLayout để căn giữa toàn bộ buttonPanel
+        JPanel buttonContainer = new JPanel(new GridBagLayout());
         buttonContainer.setBackground(RpsClientView.BACKGROUND_COLOR);
-        buttonContainer.add(choiceLabel, BorderLayout.NORTH);
-        buttonContainer.add(buttonPanel, BorderLayout.CENTER);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER; // Căn giữa
+        buttonContainer.add(choiceLabel, gbc);
+        
+        gbc.gridy = 1;
+        buttonContainer.add(buttonPanel, gbc); // Thêm buttonPanel vào giữa
         
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
